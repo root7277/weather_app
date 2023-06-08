@@ -1,12 +1,40 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+Future <Map> getDays() async {
+  String url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/uzbekistan/?key=F3PMQS2MHFJTTXRWJ87TG4Z8T';
+  Uri uri = Uri.parse(url);
+
+  http.Response response = await http.get(uri);
+
+  Map m = jsonDecode(response.body);
+
+  Map first = m['days'][0];
+  print(first);
+
+  String temp = first['temp'];
+  String icon = first['icon'];
+  Map done = {'today temp': temp, 'today icon': icon};
+
+  return done;
+}
 
 void main() {
   runApp(const WeatherScreen());
 }
 
 
-class WeatherScreen extends StatelessWidget {
+class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
+
+  @override
+  State<WeatherScreen> createState() => _WeatherScreenState();
+}
+
+class _WeatherScreenState extends State<WeatherScreen> {
+  String today_temp = '56';
+  IconData? today_icon;
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +74,14 @@ class WeatherScreen extends StatelessWidget {
               ),
             ),
             Container(
-              child: const Row(
+              child: Row(
                 children: [
                   Row(
                     children: [
                     Padding(
                         padding: EdgeInsets.only(left: 50),
                         child: Text(
-                          '14',
+                          today_temp,
                           style: TextStyle(
                             fontSize: 90,
                             fontWeight: FontWeight.bold,
@@ -81,7 +109,7 @@ class WeatherScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(bottom: 10),
                         child: Icon(
-                          Icons.cloudy_snowing,
+                          today_icon,
                           size: 60,
                           color: Colors.white,
                         ),
@@ -132,7 +160,14 @@ class WeatherScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                   ),
                   child: TextButton(
-                  onPressed: (){}, 
+                  onPressed: () async {
+                    Map test = await getDays();
+                    today_temp = test['today temp'];
+                    today_icon = test['today icon'];
+                    setState(() {
+                      
+                    });
+                  }, 
                   child: const Text(
                     'More',
                     style: TextStyle(
