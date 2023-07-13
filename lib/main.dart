@@ -22,5 +22,5 @@ class _WeatherScreenState extends State<WeatherScreen> {
       home: HomePage(),
     );
   }
-}
+} 
 
