@@ -54,7 +54,7 @@ class Rectangle extends StatelessWidget {
               color: Colors.white,
             ),
             const SizedBox(width: 10),
-            SvgPicture.asset('assets/drop.svg', width: 11, height: 15, color: Colors.white),
+            SvgPicture.asset('assets/drop.svg', width: 11, height: 15),
             const SizedBox(width: 5),
             Text(
               txt1,

@@ -23,7 +23,7 @@ class SunRise extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(imageContainer, width: 86, height: 63, color: Colors.white),
+          SvgPicture.asset(imageContainer, width: 86, height: 63),
           const SizedBox(height: 10),
           Text(textContainerTitle, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: Colors.white)),
           const SizedBox(height: 3),

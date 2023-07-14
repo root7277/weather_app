@@ -20,7 +20,7 @@ class HUMIDITY extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(imageHum, width: 26, height: 32, color: Colors.white),
+          SvgPicture.asset(imageHum, width: 26, height: 32),
           const SizedBox(height: 8),
           Text(textHumTitle, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: Colors.white)),
           const SizedBox(height: 2),
